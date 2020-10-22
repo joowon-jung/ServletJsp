@@ -52,6 +52,7 @@ public class AddUser extends HttpServlet {
 			out.println("회원정보를 다시 확인해주세요.");
 		}
 		out.println("<p><p><a href='/HomeWork01/addUser.html'>뒤로</a>");
+		out.println("<br><a href='/HomeWork01/addUser.html'>내 정보 보기</a>");
 		out.println("</body>");
 		out.println("</html>");
 		
