@@ -31,6 +31,7 @@ public class SessionUseCookieTwo extends HttpServlet {
 		if (cookies != null) {
 			for (int i = 0; i < cookies.length; i++) {
 				System.out.print("\n Cookie에 저장된 정보 : ");
+																// 세션 id값이 찍힘 
 				System.out.print(cookies[i].getName() + " : " + cookies[i].getValue());
 				System.out.print("\n");
 			}
@@ -52,6 +53,8 @@ public class SessionUseCookieTwo extends HttpServlet {
 		if (session != null) {
 			out.println("<hr> SESSIONID = " + session.getId() + "<hr>");
 			String name = (String) session.getAttribute("name");
+						// 세션은 value 안에 모든 타입을 다 받을 수 있음! (Object)
+						// 그러므로 값 가져올때도 Object 타입이기 때문에 명시적 형변환 
 			out.println("이름 : " + name);
 		} else {
 			out.println("처음이십니다.");

@@ -18,6 +18,7 @@ public class AddUser extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
+		// client 에서 넘어온 값을 받자 
 		String name = request.getParameter("name");
 		String sex = request.getParameter("sex");
 		String birth = request.getParameter("birth");
@@ -28,6 +29,7 @@ public class AddUser extends HttpServlet {
 		String pnum3 = request.getParameter("pnum3");
 		String address = request.getParameter("address");
 		
+		//Client에 받은 data로 UserVO instance 생성 및 값 세팅 
 		UserVO userVO = new UserVO();
 		userVO.setName(name);
 		userVO.setSex(sex);
@@ -37,6 +39,7 @@ public class AddUser extends HttpServlet {
 		userVO.setPhone_num(pnum1+pnum2+pnum3);
 		userVO.setAddress(address);
 		
+		//DB에 접근하는 UserDAO를 이용하여 회원정보 Insert
 		UserDAO userDataSourceDao = new UserDAO();
 		userDataSourceDao.addUser(userVO);
 		
@@ -46,13 +49,14 @@ public class AddUser extends HttpServlet {
 		
 		out.println("<h2>회원가입 화면</h2>");
 		
+		// insert 유무에 따라 
 		if (userVO.isActive()) {
 			out.println(name+"님 회원가입을 축하합니다.");
 		}else {
 			out.println("회원정보를 다시 확인해주세요.");
 		}
 		out.println("<p><p><a href='/HomeWork01/addUser.html'>뒤로</a>");
-		out.println("<br><a href='/HomeWork01/addUser.html'>내 정보 보기</a>");
+		out.println("<br><a href='/HomeWork01/findUser.html'>내 정보 보기</a>");
 		out.println("</body>");
 		out.println("</html>");
 		

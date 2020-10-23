@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 */
 //@WebServlet("/CookieWriterToClient")
 public class CookieWriterToClient extends HttpServlet{
-
+ 
 	public void service(HttpServletRequest req,HttpServletResponse res) throws ServletException,IOException{
 		
 		req.setCharacterEncoding("EUC_KR");
@@ -28,8 +28,8 @@ public class CookieWriterToClient extends HttpServlet{
 		Cookie cookie = new Cookie("name",URLEncoder.encode("이누리"));
 
         cookie.setMaxAge(60*60);	//cookie 유효기간(초)
-		//cookie.setMaxAge(-1);		//cookie memory 저장 :: ??	 ==> API확인 
-		//cookie.setMaxAge(0);	 	//cookie 0초동안 유효		:: ??	 ==> API확인 
+		//cookie.setMaxAge(-1);		//브라우저 종료시 쿠키 삭제 
+		//cookie.setMaxAge(0);	 	//쿠키 삭제 
 		res.addCookie(cookie);		//Client 로 response 인스턴스를 사용 cookie 전송
 				
         out.println("<html><body>");

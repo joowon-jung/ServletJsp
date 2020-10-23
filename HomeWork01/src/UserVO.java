@@ -1,4 +1,8 @@
 
+/*
+ *  1. Client의 Data를 Object Modeling한 Normal class
+ *  2. Data만 갖는 객체로 ==> Value Object라 한다.  (Value Object Pattern)
+ */
 public class UserVO {
 
 	private String name;
@@ -77,4 +81,11 @@ public class UserVO {
 		this.active = active;
 	}
 
+	@Override
+	public String toString() {
+		return "UserVO [name=" + name + ", sex=" + sex + ", birth=" + birth + ", edu=" + edu + ", job=" + job
+				+ ", phone_num=" + phone_num + ", address=" + address + ", active=" + active + "]";
+	}
+
+	
 }

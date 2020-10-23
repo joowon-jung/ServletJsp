@@ -264,6 +264,7 @@
 		<url-pattern>/FirstServlet</url-pattern>
 	</servlet-mapping>
 
+	<!--  DataSource definition -->
 	<resource-ref>
 			<res-ref-name>jdbc/ora</res-ref-name>
 			<res-type>javax.sql.DataSource</res-type>

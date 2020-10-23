@@ -35,7 +35,9 @@ public class LoginBeanDataSourceSession extends HttpServlet {
 		// login 한 회원 :: session 에 저장된 UserVO Get
 		// login 안 한 회원 :: session 에 저장된 UserVO 없으므로 null Get
 		UserVO userVO = (UserVO) session.getAttribute("userVO");
+						// session 은 값을 가져올때 Object 타입이므로 자기 자신으로 명시적 형변환 
 		System.out.println("session 에 저장된 UserVO 유무 확인 : " + userVO);
+															// toString 오버라이딩 되어 있음.
 		
 		// 아래의 두 경우를 고려
 		// ==> 고려할 사항 1
@@ -56,7 +58,7 @@ public class LoginBeanDataSourceSession extends HttpServlet {
 			
 			// DB 접근 Data 검색 비교 UserVO.active true / false 변경
 			UserDataSourceDao userDataSourceDao = new UserDataSourceDao();
-			userDataSourceDao.getUser(userVO);
+			userDataSourceDao.getUser(userVO); // 여기서 유저 정보 확인하고 isActive를 true로 바꿔줌 
 		}
 
 		out.println("<html>");
@@ -68,7 +70,7 @@ public class LoginBeanDataSourceSession extends HttpServlet {
 			out.println(userVO.getId() + "님 환영합니다.");
 			// Login 이 정상적으로 이루어진 경우
 			// session 에 로그인 정보로 userVO instance 저장
-			session.setAttribute("userVO", userVO);
+			session.setAttribute("userVO", userVO); // 세션에 유저 정보 저장 
 		} else {
 			out.println("Login 실패! id, pwd를 확인하세요.");
 		}
