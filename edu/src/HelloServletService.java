@@ -1,4 +1,5 @@
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -12,12 +13,14 @@ public class HelloServletService extends HttpServlet{
 	
 	// Client request 시 마다 호출되는 service() method 오버라이딩
 	public void service(HttpServletRequest req,HttpServletResponse res) throws ServletException,IOException{
+				// req : 요구사항 get ( 클라이언트의 요구사항, 모든정보 ex.ip 주소 등... )
+				// res : html에 set ( 클라이언트에 보낼 정보 )
 		
 		System.out.println("Servlet service() 시작");
 		System.out.println("요청하는 클라이언트 IP 주소 : "+ req.getRemoteAddr());
 
 		// 한글 처리
-		//res.setContentType("text/html"); // 한글 깨짐!
+		//res.setContentType("text/html"); // Html 보낼 것임. 한글 깨짐!
 		res.setContentType("text/html;charset=EUC_KR"); // 한글 안 깨짐!
 
 		// 1. client에게 Html Text 전송을 위한 Stream 생성
@@ -26,8 +29,9 @@ public class HelloServletService extends HttpServlet{
 		// PrintWriter out = new PrintWriter(writer); // readLine() 해서 한 줄로 읽어내주기 위함
 
 		// 2. PrintWriter 인스턴스 생성을 Encapsulation 한 API 사용하여 Stream 생성
-		PrintWriter out = res.getWriter();
+		PrintWriter out = res.getWriter(); // getWriter() : 위의 과정을 다 만들어 놓았음 
 
+		// 브라우저에 html 쏘기 
 		out.println("<html>");	
 		out.println("<head><title>hello Servlet</title></head>");
 		out.println("<body>");

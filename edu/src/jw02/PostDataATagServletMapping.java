@@ -15,7 +15,7 @@ public class PostDataATagServletMapping extends HttpServlet{
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException,IOException{
 
 		// 16진수로 인코딩된 client form data를 한글로 디코딩
-		req.setCharacterEncoding("EUC_KR");
+		req.setCharacterEncoding("EUC_KR"); // Post만 적용됨! why? body 에 내용(key&value)이 들어가니까 !
 
 		// 아래의 두 라인은 servlet에서 client로 Html 전송 시 필수로 해줘야 하는 코딩
 		res.setContentType("text/html;charset=EUC_KR"); // 한글 안 깨짐!
@@ -38,6 +38,7 @@ public class PostDataATagServletMapping extends HttpServlet{
 
 		// ==> <a> Tag 이용 QueryString 전달
 		out.println("<p><a href='/edu/PostDataATagServletMapping?name=홍길동&addr=서울'>"+"자기자신</a>");
+							// get 방식으로 전달하고 있으니까 자기자신을 누르면 오류가 나는 것 
 
 		out.println("</body>");
 		out.println("</html>");	

@@ -40,8 +40,9 @@ public class UserDataSourceDao {
 			
 			//===========================================================//
 			//==> DataSource에서 connection GET
-			InitialContext ic = new InitialContext();
+			InitialContext ic = new InitialContext(); // Tomcat 메모리를 추상화 & 캡슐화 한 것 
 			DataSource ds = (DataSource)ic.lookup("java:comp/env/jdbc/ora");
+										// java:comp/env까지는 톰캣 doc에서 쓰라는대로 쓴 것 
 										//==> java:comp : naming service root 
 										//==> env : environment 
 										//==> jdbc/ora : server.xml에 등록된 name 

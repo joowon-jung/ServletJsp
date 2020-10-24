@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/*
+ * 		Login.java 의 JDBC가 다 빠지고 서블릿만 있음!
+ */
 							// 서블릿은 반드시 서블릿 인터페이스를 확장해야 한다 
 public class LoginBean extends HttpServlet {
 

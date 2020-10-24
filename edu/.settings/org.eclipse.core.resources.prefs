@@ -1,2 +1,14 @@
 eclipse.preferences.version=1
+encoding//WebContent/getData.html=UTF-8
+encoding//WebContent/jw02/getDataKrATagServletMapping.html=MS949
+encoding//WebContent/jw02/multiCheck01.html=MS949
+encoding//WebContent/jw02/multiCheck02.html=MS949
+encoding//WebContent/jw02/multiCheck03.html=MS949
+encoding//WebContent/jw02/postDataATagServletMapping.html=MS949
+encoding//WebContent/jw04=MS949
+encoding//WebContent/jw04/login.html=MS949
+encoding//WebContent/jw04/loginBeanDataSource.html=MS949
+encoding//WebContent/jw04/loginBeanPool.html=MS949
+encoding//WebContent/tomcatGreeting.html=MS949
 encoding/<project>=MS949
+encoding/WebContent=MS949

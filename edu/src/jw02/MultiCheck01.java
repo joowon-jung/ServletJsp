@@ -18,7 +18,7 @@ public class MultiCheck01 extends HttpServlet{
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 	
-		res.setContentType("text/html;charset=EUC_KR");
+		res.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = res.getWriter();
 		
 		out.println("<html>");
@@ -36,7 +36,7 @@ public class MultiCheck01 extends HttpServlet{
 //         out.println("<li>사용중인  SW : "+ sw);
         //*/
          //[처리방법 2]  1. sw 는 checkbox  여러개의 value 갖을수 있다.
-        //                         2. 다중 선택일 경우 array 을 return 하는 getParameterValues() 사용.
+        //             2. 다중 선택일 경우 array 을 return 하는 getParameterValues() 사용.
           	out.println("<br>선택하신 sw아래와 같습니다.<br>");
             String[] sw = req.getParameterValues("sw");
 
@@ -54,7 +54,7 @@ public class MultiCheck01 extends HttpServlet{
 		String convertParamValue = null;
 		try{
 			byte[] b = paramValue.getBytes("8859_1");
-			convertParamValue = new String(b,"EUC_KR");
+			convertParamValue = new String(b,"UTF-8");
 		}catch(UnsupportedEncodingException uee){
 			System.out.println("한글 변환중 Exception 발생");
 			uee.printStackTrace();

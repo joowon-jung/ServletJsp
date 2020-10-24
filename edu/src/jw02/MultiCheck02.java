@@ -30,7 +30,7 @@ public class MultiCheck02 extends HttpServlet{
 		// 2. getParameter("name") 의 name  하드코딩 않음
 		Enumeration<String> en = req.getParameterNames();
 		
-		while(en.hasMoreElements()){
+		while(en.hasMoreElements()){ // 데이터 꺼냄. 있으면 true, 없으면 false 
 			String name = en.nextElement();
 			String value = req.getParameter(name);
 			out.println("<li> "+name+" : "+value);

@@ -67,8 +67,8 @@ public class DbBean  {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false; // 여기에 왜 return 문이 존재해야 하는가?
-		} finally {
+			return false; // 왜 catch문 내부에 return 문이 존재해야 하는가?
+		} finally { // 반드시 finally 에서 close 
 			if (rs != null) {
 				try {
 					rs.close();

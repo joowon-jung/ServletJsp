@@ -16,6 +16,9 @@ public class PostData extends HttpServlet{
 
 		// 16진수로 인코딩된 client form data를 한글로 디코딩
 		req.setCharacterEncoding("EUC_KR");
+		// POST 방식만 이렇게 가능! 인코딩 해주는 영역은 body 영역인데,
+		// post 방식은 body 안에 name=value 값들이 담겨져서 가져와지기 때문에!
+		// (get 방식은 url에 담겨져서 보내져서 불가능..) 
 
 		// 아래의 두 라인은 servlet에서 client로 Html 전송 시 필수로 해줘야 하는 코딩
 		res.setContentType("text/html;charset=EUC_KR"); // 한글 안 깨짐!

@@ -26,8 +26,9 @@ public class LoginBeanInitParam extends HttpServlet {
 
 	// init() method 오버라이딩
 	// ==> web.xml(Meta-data)에 등록된 정보 추출
-	// ==> init() method는 Client의 최초 request 시 1번만 호출됨! (Servlet Life Cycle)
+	// ==> init() method는 Client의 최초 request 시 "1번"만 호출됨! (Servlet Life Cycle)
 	public void init(ServletConfig sc) throws ServletException {
+					// ServletConfig : meta-data 정보를 받는 객체 
 		super.init(sc);
 		jdbcDriver = sc.getInitParameter("jdbcDriver");
 		jdbcURL = sc.getInitParameter("jdbcURL");
@@ -67,7 +68,7 @@ public class LoginBeanInitParam extends HttpServlet {
 		dao.setJdbcUser(jdbcUser);
 		dao.setJdbcPasswd(jdbcPasswd);
 		
-		dao.getUser(userVO); // userVO의 재사용성
+		dao.getUser(userVO); // userVO의 재사용성! 계속 사용 가능!
 		
 		out.println("<html>");
 		out.println("<head></head>");

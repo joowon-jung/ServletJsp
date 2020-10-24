@@ -20,7 +20,7 @@ public class Login extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		req.setCharacterEncoding("EUC_KR");
-		res.setContentType("text/html;charset=EUC_KR");
+		res.setContentType("text/html;charset=EUC_KR"); // html은 대소문자 구분 x 
 		PrintWriter out = res.getWriter();
 		
 		//html 파일에서 클라이언트가 입력한 데이터 받아옴
@@ -49,12 +49,12 @@ public class Login extends HttpServlet {
 			// 3단계 ResultSet
 			ResultSet rs = pStmt.executeQuery();
 			
-			if (rs.next()) {
+			if (rs.next()) { 
 				fromDbId = rs.getString("id");
 				fromDbPwd = rs.getString("pwd");
 				//==> debug :: console 확인
 				System.out.println("db에서 확인한 id, pwd==>: "+fromDbId+" : "+fromDbPwd);
-			} else {
+			} else { // 디버깅 위함 
 				//==> debug :: console 확인
 				System.out.println("db에 client에서 입력한 <"+id+"> 와 <"+pwd+">가 없습니다.");
 			}

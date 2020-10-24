@@ -29,18 +29,19 @@ public class MultiCheck03 extends HttpServlet{
 		// 1. QueryString(name=value) 의 name 을 return 하는 getParameterNames() 
 		// 2. getParameter("name") 의 name  하드코딩 않음
 		Enumeration<String> en = req.getParameterNames();
+		//java.util 패키지 참고 
 		
-		while(en.hasMoreElements()){
+		while(en.hasMoreElements()){ // hasMoreElements() : 데이터 꺼냄 
 			
-			String name = en.nextElement();
+			String name = en.nextElement(); // nextElement() : 데이터 반환 
 			String value = req.getParameter(name);
 			
 			if (name.equals("sw")) {
 				
-				String[] sw = req.getParameterValues("sw");
+				String[] sw = req.getParameterValues("sw"); // 여러개 꺼내옴 
 				
-				for(int i=0;i<sw.length;i++){
-				    out.println("<li>"+name+" : "+sw[i]);
+				for (int i = 0; i < sw.length; i++) {
+					out.println("<li>" + name + " : " + sw[i]);
 				}
 				
 			} else {

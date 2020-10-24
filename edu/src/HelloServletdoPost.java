@@ -17,6 +17,15 @@ public class HelloServletdoPost extends HttpServlet{
 	}
 
 	// doPost() method Overriding
+	
+	// 이 java 파일을 실행했을 때 doPost 메소드만 있으면 에러나는 이유 :
+	// <form method>에서 get, post 방식을 기술해줬을 때는 상관이 없는데,
+	// 아무것도 하지 않았을 때는 기본적으로 doGet 메소드가 실행된다.
+	// 그러므로 html 문서를 만들지 않고 실행했을 때도 doGet 메소드가 실행된 것!
+	//  ==> 하위(이 클래스)에 없으니까 상위로 올라갔는데 상위의 doGet 메소드안에서 에러를 발생시켜주고 있어서.
+	
+	// doPost 메소드를 실행시키려면 html 문서 만든 후 <form> 태그의 method를 post로 해줘야 한다 
+	// 아니면 위의 방식대로 doGet 메소드 안에서 doPost 메소드 호출하거나, 아예 service 메소드 사용하면 된다 
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException,IOException{
 		
 		System.out.println("servlet doPost() 시작");

@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 public class GetData extends HttpServlet{
 
 	// 1. Client Get 방식으로 Request : doGet() method 오버라이딩
-	// 2. service() method 오버라이딩
+	// 2. service() method 오버라이딩 가능 
 	public void doGet(HttpServletRequest req,HttpServletResponse res) throws ServletException,IOException{
 
 		// 아래의 두 라인은 servlet에서 client로 Html 전송 시 필수로 해줘야 하는 코딩

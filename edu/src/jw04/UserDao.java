@@ -32,6 +32,10 @@ public class UserDao {
 						
 			// 2단계 Statement
 			pStmt = con.prepareStatement("SELECT id, pwd FROM users WHERE id = ? and pwd = ?");
+			 					// 이렇게 하면 password만 틀렸습니다 라고 할 수 없음. 무조건 id, pwd 다 맞아야 함 
+								// DbBean 에서 한 것처럼 쿼리 날리면 id / pwd 구분해서 틀렸다고 해줄 수 있음 ! 
+								// 상황에 맞게 조절해서 선택 사용하기 
+										
 			pStmt.setString(1, userVO.getId());
 			pStmt.setString(2, userVO.getPwd());
 			
