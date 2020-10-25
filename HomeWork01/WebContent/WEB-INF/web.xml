@@ -14,6 +14,26 @@
 		<servlet-name>AddUser</servlet-name>
 		<servlet-class>AddUser</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>FindUser</servlet-name>
+		<servlet-class>FindUser</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>FindUserDataSourceSession</servlet-name>
+		<servlet-class>FindUserDataSourceSession</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FindUserDataSourceSession</servlet-name>
+		<url-pattern>/FindUserDataSourceSession</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>FindUser</servlet-name>
+		<url-pattern>/FindUser</url-pattern>
+	</servlet-mapping>
 
 	<servlet-mapping>
 		<servlet-name>AddUser</servlet-name>

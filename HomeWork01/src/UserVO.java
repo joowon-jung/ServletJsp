@@ -1,10 +1,10 @@
-
 /*
  *  1. Client의 Data를 Object Modeling한 Normal class
  *  2. Data만 갖는 객체로 ==> Value Object라 한다.  (Value Object Pattern)
  */
 public class UserVO {
 
+	private String id;
 	private String name;
 	private String sex;
 	private String birth;
@@ -15,6 +15,14 @@ public class UserVO {
 	private boolean active;
 	
 	public UserVO() {
+	}
+	
+	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -83,9 +91,8 @@ public class UserVO {
 
 	@Override
 	public String toString() {
-		return "UserVO [name=" + name + ", sex=" + sex + ", birth=" + birth + ", edu=" + edu + ", job=" + job
-				+ ", phone_num=" + phone_num + ", address=" + address + ", active=" + active + "]";
+		return "UserVO [id=" + id + ", name=" + name + ", sex=" + sex + ", birth=" + birth + ", edu=" + edu + ", job="
+				+ job + ", phone_num=" + phone_num + ", address=" + address + ", active=" + active + "]";
 	}
-
 	
 }
