@@ -31,7 +31,7 @@ public class SessionUseCookieTwo extends HttpServlet {
 		if (cookies != null) {
 			for (int i = 0; i < cookies.length; i++) {
 				System.out.print("\n Cookie¿¡ ÀúÀåµÈ Á¤º¸ : ");
-																// ¼¼¼Ç id°ªÀÌ ÂïÈû 
+																// ¼¼¼Ç id°ªÀÌ ÂïÈû
 				System.out.print(cookies[i].getName() + " : " + cookies[i].getValue());
 				System.out.print("\n");
 			}

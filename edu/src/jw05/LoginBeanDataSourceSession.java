@@ -16,9 +16,13 @@ import javax.servlet.http.HttpSession;
 import jw04.UserVO;
 import jw04.UserDataSourceDao;
 
+/*
+ * 		세션에 userVO 정보를 저장해서 계속 로그인 상태 유지하게 하기 
+ */
 //@WebServlet("/LoginBeanDataSource")
 public class LoginBeanDataSourceSession extends HttpServlet {
 	
+	// service() 메소드를 호출 => POST, GET여부에 따라 doGet() 또는 doPost()가 호출된다.
 	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		req.setCharacterEncoding("EUC_KR");
@@ -34,8 +38,9 @@ public class LoginBeanDataSourceSession extends HttpServlet {
 		
 		// login 한 회원 :: session 에 저장된 UserVO Get
 		// login 안 한 회원 :: session 에 저장된 UserVO 없으므로 null Get
-		UserVO userVO = (UserVO) session.getAttribute("userVO");
-						// session 은 값을 가져올때 Object 타입이므로 자기 자신으로 명시적 형변환 
+		UserVO userVO = (UserVO) session.getAttribute("userVO"); // 로그인 되어있나 확인하기 위함 
+						// session 은 값을 가져올때 Object 타입이므로 자기 자신으로 명시적 형변환
+						// 세션이 만들어지지 않았을 때 이 코드를 실행하게 되면 null이 찍힘! 
 		System.out.println("session 에 저장된 UserVO 유무 확인 : " + userVO);
 															// toString 오버라이딩 되어 있음.
 		
@@ -50,15 +55,15 @@ public class LoginBeanDataSourceSession extends HttpServlet {
 		// 2. req.getParameter("id") 의 값 ==> null
 		
 		// ==> 1, 2 인 경우 DB 접근 불필요 :: 입력 값의 유효성을 check 하는 if문
-		if ( !(id == null || id.equals("" ) ) ) {
-			///UserVO instance 생성 및 Client Form Data 전달 (Binding)
+		if ( !(id == null || id.equals("" ) ) ) { // validation check 해서 데이터 입력할때만 DB접근
+			//UserVO instance 생성 및 Client Form Data 전달 (Binding)
 			userVO = new UserVO();
 			userVO.setId(id);
 			userVO.setPwd(pwd);
 			
 			// DB 접근 Data 검색 비교 UserVO.active true / false 변경
 			UserDataSourceDao userDataSourceDao = new UserDataSourceDao();
-			userDataSourceDao.getUser(userVO); // 여기서 유저 정보 확인하고 isActive를 true로 바꿔줌 
+			userDataSourceDao.getUser(userVO); // 여기서 유저 정보 확인하고 맞으면 isActive를 true로 바꿔줌 
 		}
 
 		out.println("<html>");

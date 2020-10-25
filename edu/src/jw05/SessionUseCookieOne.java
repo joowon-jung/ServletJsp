@@ -40,7 +40,7 @@ public class SessionUseCookieOne extends HttpServlet {
 		out.println("<center><h2>SessionUseCookieOne</h2></center>");
 		
 		// HttpSession 을 구분, GET 할 수 있는 unique 한 id값 확인
-		System.out.println("\nUNIQUE한 SESSION ID는 : " + session.getId()); // id값 확인하기 위함 
+		System.out.println("\nUNIQUE한 SESSION ID는 : " + session.getId()); // id값 확인하기 위함 (16진수)
 		
 		// ==> 새로 만들어진 HttpSession 객체라면
 		if (session.isNew()) {
