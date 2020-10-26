@@ -12,7 +12,7 @@ public class UserVO {
 	private String job;
 	private String phone_num;
 	private String address;
-	private boolean active;
+	private boolean active; // UserDAO 에서 insert 성공시 true로 바꿔줌
 	
 	public UserVO() {
 	}

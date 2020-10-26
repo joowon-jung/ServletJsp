@@ -6,6 +6,11 @@ import java.sql.SQLException;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+/* 
+ * FileName : UserDAO.java
+ * ㅇ 회원관리 Service를 담당하는 DAO
+*/
+
 public class UserDAO {
 
 	// DB에서 Data를 insert 하는 method
@@ -36,9 +41,9 @@ public class UserDAO {
 			int confirm = pStmt.executeUpdate();
 
 			// 3단계 결과값 확인하기 => DB에 data insert 유무확인
-			if (confirm == 1) {
+			if (confirm == 1) { // 정상적으로 한 행이 insert 되면 결과가 1이 담김 
 				System.out.println("Table data Insert 완료!");
-				userVO.setActive(true);
+				userVO.setActive(true); // ★
 				System.out.println("Insert 데이터 : " + userVO);
 			} else {
 				System.out.println("Table data Insert 실패!");
@@ -64,7 +69,7 @@ public class UserDAO {
 		}
 	}
 
-	// DB에서 Data를 select 하는 method
+	// 회원정보(회원목록)를 select 하여 UserVO 로 return 하는 method
 	public UserVO findUser(String id) {
 
 		UserVO userVO = new UserVO(); // return 할 UserVO 
@@ -91,7 +96,6 @@ public class UserDAO {
 			if (rs.next()) { // 찾은 Result가 있으면 출력할 것 
 				System.out.println("db에서 확인한 id ==>: " + rs.getString(1));
 				// 상태값 세팅
-				userVO.setActive(true);
 				userVO.setId(rs.getString(1));
 				userVO.setName(rs.getString(2));
 				userVO.setSex(rs.getString(3));
@@ -100,6 +104,7 @@ public class UserDAO {
 				userVO.setJob(rs.getString(6));
 				userVO.setPhone_num(rs.getString(7));
 				userVO.setAddress(rs.getString(8));
+				System.out.println(userVO);
 			} else {
 				System.out.println("db에 client에서 입력한 <" + id + "> 에 해당하는 자료가 없습니다.");
 			}
@@ -107,6 +112,7 @@ public class UserDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			//각각의 DB와 관련된 객체 close
 			if (rs != null) {
 				try {
 					rs.close();

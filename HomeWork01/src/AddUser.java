@@ -6,7 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+/*
+ * 		회원 가입 
+ */
 //@WebServlet("/AddUser")
 public class AddUser extends HttpServlet {
 	
@@ -58,11 +62,13 @@ public class AddUser extends HttpServlet {
 		// insert 유무에 따라 
 		if (userVO.isActive()) {
 			out.println(userVO.getId()+"님 회원가입을 축하합니다.");
-			out.println("<br><a href='/HomeWork01/findUser.html'>내 정보 보기 1 (html 거쳐서) </a>");
-			out.println("<br><a href='FindUserDataSourceSession?id="+userVO.getId()+"&name="+userVO.getName()+""
-					+ "&sex="+userVO.getSex()+"&birth="+userVO.getBirth()+"&edu="+userVO.getEdu()+""
-							+ "&job="+userVO.getJob()+"&phone_num="+userVO.getPhone_num()+""
-									+ "&address="+userVO.getAddress()+"'>내 정보 보기 2 (세션 사용) </a>");
+			out.println("<br><a href='findUser.html'>내 정보 보기 1 (html 거쳐서 id 입력) </a>");
+			
+			// 회원가입이 완료되면 userVO instance 를 session 에 저장
+//			HttpSession session = request.getSession(true);
+//			session.setAttribute("userVO", userVO);
+			request.getSession(true).setAttribute("userVO", userVO);
+			out.println("<br><a href='FindUser'>내 정보 보기 2 (세션 사용) </a>");
 		}else {
 			out.println("회원정보를 다시 확인해주세요.");
 		}
