@@ -1,3 +1,4 @@
+package jw.services.user.vo;
 /*
  *  1. Client의 Data를 Object Modeling한 Normal class
  *  2. Data만 갖는 객체로 ==> Value Object라 한다.  (Value Object Pattern)
