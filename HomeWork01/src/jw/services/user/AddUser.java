@@ -1,3 +1,5 @@
+package jw.services.user;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -7,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import jw.services.user.dao.UserDAO;
+import jw.services.user.vo.UserVO;
 
 /*
  * 		회원 가입 
@@ -62,7 +67,7 @@ public class AddUser extends HttpServlet {
 		// insert 유무에 따라 
 		if (userVO.isActive()) {
 			out.println(userVO.getId()+"님 회원가입을 축하합니다.");
-			out.println("<br><a href='findUser.html'>내 정보 보기 1 (html 거쳐서 id 입력) </a>");
+			out.println("<br><a href='/HomeWork01/servlet/findUser.html'>내 정보 보기 1 (html 거쳐서 id 입력) </a>");
 			
 			// 회원가입이 완료되면 userVO instance 를 session 에 저장
 //			HttpSession session = request.getSession(true);
@@ -72,7 +77,7 @@ public class AddUser extends HttpServlet {
 		}else {
 			out.println("회원정보를 다시 확인해주세요.");
 		}
-		out.println("<p><p><a href='/HomeWork01/addUser.html'>뒤로</a>");
+		out.println("<p><p><a href='/HomeWork01/servlet/addUser.html'>뒤로</a>");
 		
 		out.println("</body>");
 		out.println("</html>");

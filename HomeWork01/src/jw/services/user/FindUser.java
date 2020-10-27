@@ -1,4 +1,4 @@
-
+package jw.services.user;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import jw.services.user.dao.UserDAO;
+import jw.services.user.vo.UserVO;
+
 
 //@WebServlet("/findUser")
 public class FindUser extends HttpServlet {
@@ -63,7 +67,7 @@ public class FindUser extends HttpServlet {
 			out.println(id+" 에 해당하는 회원정보 없음! id를 확인하세요.");
 		}
 		
-		out.println("<p><p><a href='findUser.html'>뒤로</a>");
+		out.println("<p><p><a href='/HomeWork01/servlet/findUser.html'>뒤로</a>");
 		out.println("<body>");
 		out.println("</html>");
 	}
