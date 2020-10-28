@@ -3,19 +3,16 @@ package jw.services.user.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
-
-import jw.services.user.vo.*;
+import jw.common.dao.AbstractDao;
+import jw.services.user.vo.UserVO;
 
 /* 
  * FileName : UserDAO.java
  * ㅇ 회원관리 Service를 담당하는 DAO
 */
 
-public class UserDAO {
+public class UserDAO extends AbstractDao {
 
 	// DB에서 Data를 insert 하는 method
 	public void addUser(UserVO userVO) {
@@ -27,9 +24,7 @@ public class UserDAO {
 		try {
 
 			// 1단계 connetion하기(login과정)
-			InitialContext ic = new InitialContext();
-			DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/ora");
-			con = ds.getConnection();
+			con = this.connect();
 
 			// 2단계 insert query 문을 전송하는단계
 			pStmt = con.prepareStatement("INSERT INTO  users2 VALUES(?,?,?,?,?,?,?,?)");
@@ -56,20 +51,7 @@ public class UserDAO {
 			e.printStackTrace();
 		} finally {
 			// 각각의 DB와 관련된 객체 close
-			if (pStmt != null)
-				try {
-					pStmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			this.close(con, pStmt);
 		}
 	}
 
@@ -86,9 +68,7 @@ public class UserDAO {
 		try {
 
 			// 1단계 connetion하기(login과정)
-			InitialContext ic = new InitialContext();
-			DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/ora");
-			con = ds.getConnection();
+			con = this.connect();
 
 			// 2단계 select query 문을 전송하는단계
 			pStmt = con.prepareStatement("SELECT * FROM users2 WHERE id = ?");
@@ -117,28 +97,54 @@ public class UserDAO {
 			e.printStackTrace();
 		} finally {
 			//각각의 DB와 관련된 객체 close
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (pStmt != null) {
-				try {
-					pStmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			this.close(con, pStmt, rs);
 		}
 		return userVO;
+	}
+	
+	// 회원정보(회원목록)를 수정하는 method
+	public void updateUser(UserVO userVO) {
+		
+		// JDBC을 이용하기 위한 객체 생성
+		Connection con = null;
+		PreparedStatement pStmt = null;
+		
+		try {
+
+			// 1단계 connetion하기(login과정)
+			con = this.connect();
+
+			// 2단계 select query 문을 전송하는단계
+			pStmt = con.prepareStatement("update users2 set name = ?, "
+					+ "sex = ?, birth = ?, edu = ?, job = ?, "
+					+ "phone_num = ?, address = ? where id = ?");
+
+			pStmt.setString(1, userVO.getName());
+			pStmt.setString(2, userVO.getSex());
+			pStmt.setString(3, userVO.getBirth());
+			pStmt.setString(4, userVO.getEdu());
+			pStmt.setString(5, userVO.getJob());
+			pStmt.setString(6, userVO.getPhone_num());
+			pStmt.setString(7, userVO.getAddress());
+			pStmt.setString(8, userVO.getId());
+			
+			int confirm = pStmt.executeUpdate();
+			
+			// 3단계 결과값 확인하기 => DB에 data update 유무확인
+			if (confirm != 0) { // INSERT, DELETE, UPDATE된 행의 수! 아무 리턴이 없으면 0!
+				System.out.println("Table data Update 완료!");
+				userVO.setActive(true); // ★
+				System.out.println("Update 데이터 : " + userVO);
+			} else {
+				System.out.println("Table data Update 실패!");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			//각각의 DB와 관련된 객체 close
+			this.close(con, pStmt);
+		}
+		
 	}
 }

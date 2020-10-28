@@ -33,16 +33,18 @@ UserVO userVO = bean.findUser(id); // findUser에서 찾는 회원정보가 없�
 <h2>회원정보 화면</h2>
 
 <% if (userVO != null) { %>
-이름 : <%= userVO.getId() %> 님 의 회원정보 <br>
+<%= userVO.getId() %> 님 의 회원정보 <br>
+이름 : <%= userVO.getName() %> <br>
 성별 : <%=userVO.getSex() %> <br>
 생년 : <%=userVO.getBirth() %> <br>
 학력 :  <%=userVO.getEdu() %> <br>
-직업 :<%=userVO.getJob() %> <br>
+직업 : <%=userVO.getJob() %> <br>
 연락처 :  <%=userVO.getPhone_num() %> <br>
 주소 : <%=userVO.getAddress() %> <br>
 <% } else { %>
 <%= id %> 에 해당하는 회원정보 없음! id를 확인하세요.
 <% } %>
 <p><p><a href='findUser.html'>뒤로</a>
+<p><p><a href='updateUserView.jsp'>내정보수정</a>
 </body>
 </html>

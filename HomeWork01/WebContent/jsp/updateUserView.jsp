@@ -1,25 +1,28 @@
-<!DOCTYPE html>
-
+<%@ page language="java" 
+	contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="jw.services.user.vo.UserVO" %>
+    
 <html lang="ko">
 
 <head>
 <meta charset="UTF-8">
 <title>SignUp</title>
 </head>
-
+<% session = request.getSession(true); %>
 <body>
 	<br>
-	<form method="post" action="addUser.jsp">
+	<form method="post" action="updateUser.jsp">
 		<table border="2" height="400">
 		
 			<tr height="10">
-				<td>* 아이디</td>
-				<td><input type='text' name='id'></td>
+				<td>* 아이디 - 수정 불가</td>
+				<td><input type='text' name='id' value = "<%= ((UserVO) session.getAttribute("userVO")).getId() %>" readonly></td>
 			</tr>
 
 			<tr height="10">
 				<td>* 이름(한글실명)</td>
-				<td><input type='text' name='name'></td>
+				<td><input type='text' name='name' value = "<%=((UserVO) session.getAttribute("userVO")).getName() %>"></td>
 			</tr>
 
 			<tr>
@@ -30,7 +33,7 @@
 
 			<tr>
 				<td>* 생년월일</td>
-				<td><input type="text" name='birth' size="5" />년</td>
+				<td><input type="text" name='birth' size="5" value = "<%=((UserVO) session.getAttribute("userVO")).getBirth() %>"/>년</td>
 			</tr>
 
 			<tr>
@@ -66,7 +69,7 @@
 
 			<tr>
 				<td>* 거주지 주소</td>
-				<td><input type="text" name='address' size="50" /></td>
+				<td><input type="text" name='address' size="50" value = "<%=((UserVO) session.getAttribute("userVO")).getAddress() %>"/></td>
 			</tr>
 
 		</table>

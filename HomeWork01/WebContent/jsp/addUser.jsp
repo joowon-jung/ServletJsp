@@ -49,7 +49,7 @@ request.setCharacterEncoding("UTF-8");
 		request.getSession(true).setAttribute("userVO", userVO);
 	%>
 	<br>
-	<a href='FindUser.jsp'>내 정보 보기 2 (세션 사용) </a>
+	<a href='findUser.jsp'>내 정보 보기 2 (세션 사용) </a>
 	<%
 		} else {
 	%>

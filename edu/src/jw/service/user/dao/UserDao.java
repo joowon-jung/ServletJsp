@@ -3,6 +3,8 @@ package jw.service.user.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import jw.common.dao.AbstractDao;
 import jw.service.user.vo.UserVO;
@@ -85,4 +87,46 @@ public class UserDao extends AbstractDao {
 		return insertResult; 
 	}//end of addUser()
 
+	// 회원정보가 담긴 메소드
+	public List<UserVO> getUserList() {
+		
+		List<UserVO> arrayList = new ArrayList<UserVO>();
+		
+		Connection con = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			// 1단계 Connection
+			con = this.connect();
+						
+			// 2단계 Statement
+			pStmt = con.prepareStatement("SELECT no, id, pwd FROM users ORDER BY no");
+			
+			// 3단계 ResultSet 결과 처리
+			rs = pStmt.executeQuery();
+			
+			// ==> select 각각의 회원정보 UserVO 로 Binding
+			// ==> 각각의 회원정보를 갖는 UserVO를 ArrayList 에 저장
+			while (rs.next()) {
+				UserVO userVO = new UserVO();
+				userVO.setNo(rs.getInt("no"));
+				userVO.setPwd(rs.getString("pwd"));
+				userVO.setId(rs.getString("id"));
+				
+				// ==> userVO 정보확인 :: console 확인
+				System.out.println(userVO);
+				
+				// ==> arrayList에 UserVO 인스턴스 add
+				arrayList.add(userVO);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			this.close(con, pStmt, rs);
+		}
+		return arrayList;
+	}
 }

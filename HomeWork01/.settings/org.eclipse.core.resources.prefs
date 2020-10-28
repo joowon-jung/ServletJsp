@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//WebContent/jsp/addUserVIew.jsp=UTF-8
+encoding//WebContent/jsp/findUserView.jsp=UTF-8
+encoding//src/jw/services/user/dao/UserDAO.java=UTF-8
+encoding//src/jw/services/user/vo/UserVO.java=UTF-8
+encoding/<project>=UTF-8
